@@ -19,14 +19,14 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert(
             [[
-                'name' => Str::random(10),
-                'email' => Str::random(10) . '@gmail.com',
-                'password' => Hash::make('password'),
-                'amount' => rand(0, 1000),
+                'name' => 'James',
+                'email' => 'james@gmail.com',
+                'password' => 'jamespwd',
+                'amount' => 1000,
             ], [
                 'name' => Str::random(10),
                 'email' => Str::random(10) . '@gmail.com',
-                'password' => Hash::make('password'),
+                'password' => 'userpwd',
                 'amount' => rand(0, 1000),
             ]]
         );
