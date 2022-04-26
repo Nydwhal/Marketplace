@@ -22,6 +22,8 @@ class CreateProductsTable extends Migration
             $table->date("start_date");
             $table->date("end_date");
             $table->string("state");
+            $table->foreignId('user_id')
+                ->constrained('users');
             $table->timestamps();
         });
     }

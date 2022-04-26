@@ -22,7 +22,8 @@ class ProductController extends Controller
         $start_date = $request->start_date;
         $end_date = $request->end_date;
         $state = $request->state;
-        return Product::create(['label' => $label, 'description' => $description, 'initial_price' => $initial_price, 'current_price' => $current_price, 'start_date' => $start_date, 'end_date' => $end_date, 'state' => $state]);
+        $user_id = $request->user_id;
+        return Product::create(['label' => $label, 'description' => $description, 'initial_price' => $initial_price, 'current_price' => $current_price, 'start_date' => $start_date, 'end_date' => $end_date, 'state' => $state, 'user_id' => $user_id]);
     }
 
     public function editProduct(Request $request)
