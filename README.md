@@ -1,32 +1,35 @@
 # Marketplace
-
-# Lancer Laragon
-# Pour exposer l'api sur l'emulateur :
-A faire sur le terminal laragon dans le dossier Backend-MarketPlace
+## Procédure de démarrage
+(La totalité des lignes de commandes devront être exécutées dans le terminal laragon en se situant dans le dossier backend)
+1) Exposer l'api sur l'emulateur :
 ```
 php artisan serve --host 0.0.0.0
 ```
-<!-- Mettre son l'adresse ip de sa machine dans le .env du projet fultter -->
-<!-- Ouvrir la collection marketplace dans postman
-Le mot de passe de john est "password" 
-Le mot de passe de jonathan est "pomme1"
-Faire les routes restantes-->
-
-# Si le dossier vendor n'existe pas :
-```
-composer install
-```
-Cela permet de récupérer le fichier autoload.php nécessaire
-
-# Configurer la db côté back :
-Vérifier les infos contenus dans le .env concernant la db (nom de la db et mot de passe). Entrez les mêmes infos dans le fichier ./config/database.php.
-# Effectuer le seeding:
+2) Effectuer le seeding:
 ```
 php artisan db:seed
 php artisan migrate:fresh --seed
 ```
 
-# Générer jwt avec :
+## Dans le cas ou le seeding ne fonctionne pas :
+
+1) Si le fichier vendor/autoload.php n'existe pas, réinstallez composer :
+```
+composer install
+```
+## Dans le cas ou des erreurs de connection à la base de données apparaissent :
+1) Si le fichier .env n'existe pas :
+- copier coller le fichier .env.example dans .env
+- modifier le fichier .env pour qu'il corresponde à la config de la db
+- générer un jeton d'authentification :
 ```
 php artisan jwt:secret
 ```
+2) Si un problème persiste, vérifier le fichier ./config/database.php
+## Schéma des requêtes :
+- Connexion de l'utilisateur :
+- Récupération du token :
+
+## A faire
+gestion des erreurs
+erreur sur l'adresse
