@@ -32,4 +32,4 @@ php artisan jwt:secret
 
 ## A faire
 gestion des erreurs
-erreur sur l'adresse
+faire le front de l'admin
