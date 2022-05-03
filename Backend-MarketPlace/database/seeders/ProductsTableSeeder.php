@@ -25,6 +25,7 @@ class ProductsTableSeeder extends Seeder
                     "end_date" => '2021-07-26',
                     'state' => 'on_sale',
                     'user_id' => '1',
+                    'image' => '',
                 ],
                 [
                     'label' => 'Ps5',
@@ -35,6 +36,7 @@ class ProductsTableSeeder extends Seeder
                     "end_date" => '2021-07-10',
                     'state' => 'on_sale',
                     'user_id' => '1',
+                    'image' => '',
                 ],
                 [
                     'label' => 'Chaise',
@@ -45,6 +47,7 @@ class ProductsTableSeeder extends Seeder
                     "end_date" => '2022-03-02',
                     'state' => 'sold',
                     'user_id' => '2',
+                    'image' => '',
                 ],
             ]
         );

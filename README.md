@@ -31,4 +31,5 @@ php artisan jwt:secret
 - Récupération du token :
 
 ## A faire
-faire le CRUD avec le token en utilisant le user-logged et pas en utilisant le user-id. mais le user_id doit etre stocké en base avec le produit associé
+gestion des erreurs
+erreur sur l'adresse
