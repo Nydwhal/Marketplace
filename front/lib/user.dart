@@ -44,4 +44,5 @@ class User {
       return Future.error(e);
     }
   }
+
 }

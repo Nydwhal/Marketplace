@@ -3,6 +3,7 @@ import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
+import 'package:shop_app/screens/home/home_screen.dart';
 import 'package:shop_app/user.dart';
 
 import '../../../constants.dart';
@@ -32,7 +33,7 @@ class _SignUpFormState extends State<SignUpForm> {
       print("${response.body}");
       if ( response . statusCode == 201  ){
         // if all are valid then go to success screen
-        Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+        Navigator.pushNamed(context, HomeScreen.routeName);
       }
       // if all are valid then go to success screen
       //Navigator.pushNamed(context, CompleteProfileScreen.routeName);

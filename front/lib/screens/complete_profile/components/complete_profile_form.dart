@@ -71,6 +71,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
             text: "continuer",
             press: () {
               if (_formKey.currentState.validate()) {
+                // save user with email and password + 
                 Navigator.pushNamed(context, OtpScreen.routeName);
               }
             },
