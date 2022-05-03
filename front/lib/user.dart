@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 // }
 
 class User {
-  String baseUrl = "http://192.168.56.1:8000/api/admin/user";
+  String baseUrl = "http://192.168.56.1:8000/api";
   // String baseUrl = "${dotenv.env['BASE_URL']}/admin/user";
 
 
@@ -33,12 +33,13 @@ class User {
   ///Create new user
   Future<http.Response> postUser(name, email, password) async{
     try {
-      var url = Uri.parse(baseUrl);
-      return await http.post(url, body: jsonEncode(<String, String>{
+      var url = Uri.parse(baseUrl + "/auth/register");
+      return await http.post(url, body: <String, String>{
         "name": name,
         "email": email,
-        "password": password
-      }));
+        "password": password,
+        "password_confirmation": password
+      });
     } catch (e) {
       return Future.error(e);
     }

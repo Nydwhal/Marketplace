@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/components/socal_card.dart';
 import 'package:shop_app/constants.dart';
 import 'package:shop_app/size_config.dart';
+import 'package:shop_app/user.dart';
 
 import 'sign_up_form.dart';
 
 class Body extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(

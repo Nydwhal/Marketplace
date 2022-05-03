@@ -6,6 +6,7 @@ import 'package:shop_app/screens/otp/otp_screen.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
+import '../../../user.dart';
 
 class CompleteProfileForm extends StatefulWidget {
   @override
@@ -19,6 +20,23 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
   String lastName;
   String phoneNumber;
   String address;
+
+  // //connection au backend
+  // void complete_profil() async {
+  //   if (_formKey.currentState.validate()) {
+  //     _formKey.currentState.save();
+
+  //     var response = await User().postUser(email, email, password);
+
+  //     print("${response.body}");
+  //     if ( response . statusCode == 201  ){
+  //       // if all are valid then go to success screen
+  //       Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+  //     }
+  //     // if all are valid then go to success screen
+  //     //Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+  //   }
+  // }
 
   void addError({String error}) {
     if (!errors.contains(error))

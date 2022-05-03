@@ -3,6 +3,7 @@ import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/components/form_error.dart';
 import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
+import 'package:shop_app/user.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -20,6 +21,23 @@ class _SignUpFormState extends State<SignUpForm> {
   String conform_password;
   bool remember = false;
   final List<String> errors = [];
+
+  //connection au backend
+  void register() async {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+
+      var response = await User().postUser(email, email, password);
+
+      print("${response.body}");
+      if ( response . statusCode == 201  ){
+        // if all are valid then go to success screen
+        Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+      }
+      // if all are valid then go to success screen
+      //Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+    }
+  }
 
   void addError({String error}) {
     if (!errors.contains(error))
@@ -50,13 +68,7 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
             text: "Continuer",
-            press: () {
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
-                // if all are valid then go to success screen
-                Navigator.pushNamed(context, CompleteProfileScreen.routeName);
-              }
-            },
+            press: register,
           ),
         ],
       ),
@@ -103,7 +115,7 @@ class _SignUpFormState extends State<SignUpForm> {
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
-        } else if (value.length >= 8) {
+        } else if (value.length >= 6) {
           removeError(error: kShortPassError);
         }
         password = value;
@@ -112,7 +124,7 @@ class _SignUpFormState extends State<SignUpForm> {
         if (value.isEmpty) {
           addError(error: kPassNullError);
           return "";
-        } else if (value.length < 8) {
+        } else if (value.length < 6) {
           addError(error: kShortPassError);
           return "";
         }
