@@ -7,6 +7,7 @@ import 'package:shop_app/screens/login_success/login_success_screen.dart';
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
+import '../../../user.dart';
 import '../../home/home_screen.dart';
 
 class SignForm extends StatefulWidget {
@@ -28,11 +29,27 @@ class _SignFormState extends State<SignForm> {
       });
   }
 
+
   void removeError({String error}) {
     if (errors.contains(error))
       setState(() {
         errors.remove(error);
       });
+  }
+
+  //fonction login
+  void login () async{
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+      var response = await User().loginUser( email, password);
+      print("${response.body}");
+      if ( response . statusCode == 200  ){
+        // if all are valid then go to success screen
+        Navigator.pushNamed(context, HomeScreen.routeName);
+      }
+      
+    } 
+
   }
 
   @override
@@ -71,11 +88,8 @@ class _SignFormState extends State<SignForm> {
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
-            text: "Continuer",
-            press: () {
-              Navigator.pushNamed(context, HomeScreen.routeName); 
-              
-            },
+            text: "Connexion",
+            press: login
           ),
         ],
       ),

@@ -1,41 +1,34 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app/models/Product1.dart';
 
 class Network{
-  final String _url = 'http://192.168.56.1:8000/api/v1';
-  //if you are using android studio emulator, change localhost to 10.0.2.2 
-  //quant a moi florent mon IP est 192.168.56.1
-  
-  var token;
+  final String baseUrl = 'http://192.168.56.1:8000/api';
 
-  _getToken() async {
-    SharedPreferences localStorage = await SharedPreferences.getInstance();
-    token = jsonDecode(localStorage.getString('token'))['token'];
-  }
-  
-  authData(data, apiUrl) async {
-    var fullUrl = _url + apiUrl;
-    return await http.post(
-        fullUrl,
-        body: jsonEncode(data),
-        headers: _setHeaders()
-    );
-  }
+  Future<List<Product>> fetchProduct() async {
+  final response = await http
+      .get(Uri.parse('$baseUrl/product/products'));
+    debugPrint("${response.body}");
+    
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    final List<Product> _products = [];
+    var json = jsonDecode(response.body);
 
-  getData(apiUrl) async {
-    var fullUrl = _url + apiUrl;
-    await _getToken();
-    return await http.get(
-        fullUrl,
-        headers: _setHeaders()
-    );
+    if (json != null) {
+      json.forEach((product) {
+        _products.add(product);
+      });
+    }
+    return _products;
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
   }
-
-  _setHeaders() => {
-    'Content-type' : 'application/json',
-    'Accept' : 'application/json',
-    'Authorization' : 'Bearer $token'
-  };
+}
 
 }

@@ -25,7 +25,7 @@ class ProductsTableSeeder extends Seeder
                     "end_date" => '2021-07-26',
                     'state' => 'on_sale',
                     'owner_id' => '1',
-                    'image' => 'image',
+                    'image' => 'splash_1.png',
                     'client_id' => '2',
                 ],
                 [
@@ -37,7 +37,7 @@ class ProductsTableSeeder extends Seeder
                     "end_date" => '2021-07-10',
                     'state' => 'on_sale',
                     'owner_id' => '1',
-                    'image' => 'image',
+                    'image' => 'splash_1.png',
                     'client_id' => '1',
                 ],
                 [
@@ -49,7 +49,7 @@ class ProductsTableSeeder extends Seeder
                     "end_date" => '2022-03-02',
                     'state' => 'sold',
                     'owner_id' => '1',
-                    'image' => 'image',
+                    'image' => 'splash_1.png',
                     'client_id' => '2',
                 ],
             ]

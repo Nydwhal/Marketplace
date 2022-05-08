@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../sign_in/sign_in_screen.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
 
@@ -12,6 +13,13 @@ class Body extends StatelessWidget {
         children: [
           ProfilePic(),
           SizedBox(height: 20),
+          ProfileMenu(
+            text: "Se déconnecter",
+            icon: "assets/icons/Log out.svg",
+            press: () {
+              Navigator.pushNamed(context, SignInScreen.routeName);
+            },
+          ),
           ProfileMenu(
             text: "Mon compte",
             icon: "assets/icons/User Icon.svg",
@@ -32,11 +40,7 @@ class Body extends StatelessWidget {
             icon: "assets/icons/Question mark.svg",
             press: () {},
           ),
-          ProfileMenu(
-            text: "Se déconnecter",
-            icon: "assets/icons/Log out.svg",
-            press: () {},
-          ),
+          
         ],
       ),
     );

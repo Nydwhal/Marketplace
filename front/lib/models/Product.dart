@@ -1,103 +1,60 @@
-import 'package:flutter/material.dart';
+// To parse this JSON data, do
+//
+//     final Produit = videoFromJson(jsonString);
 
-class Product {
-  final int id;
-  final String title, description;
-  final List<String> images;
-  final List<Color> colors;
-  final double rating, price;
-  final bool isFavourite, isPopular;
+import 'dart:convert';
 
-  Product({
-    @required this.id,
-    @required this.images,
-    @required this.colors,
-    this.rating = 0.0,
-    this.isFavourite = false,
-    this.isPopular = false,
-    @required this.title,
-    @required this.price,
-    @required this.description,
-  });
+// List<Produit> productFromJson(String str) => List<Produit>.from(json.decode(str).map((x) => Produit.fromJson(x)));
+
+// String productToJson(List<Produit> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+class Produit {
+
+    final int id;
+    final String label;
+    final String description;
+    final double initialPrice;
+    final double currentPrice;
+    final DateTime startDate;
+    final DateTime endDate;
+    final String state;
+    final String image;
+
+    Produit({
+        this.id,
+        this.label,
+        this.description,
+        this.initialPrice,
+        this.currentPrice,
+        this.startDate,
+        this.endDate,
+        this.state,
+        this.image,
+    });
+    
+    
+
+    static Produit fromJson(Map<String, dynamic> json) => Produit(
+        id: json["id"],
+        label: json["label"],
+        description: json["description"],
+        initialPrice: json["initial_price"].toDouble(),
+        currentPrice: json["current_price"].toDouble(),
+        startDate: DateTime.parse(json["start_date"]),
+        endDate: DateTime.parse(json["end_date"]),
+        state: json["state"],
+        image: json["image"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "label": label,
+        "description": description,
+        "initialPrice": initialPrice,
+        "currentPrice": currentPrice,
+        "startDate": startDate,
+        "endDate": endDate,
+        "state": state,
+        "image": image,
+    };
 }
-
-// Our demo Products
-
-List<Product> demoProducts = [
-  Product(
-    id: 1,
-    images: [
-      "assets/images/ps4_console_white_1.png",
-      "assets/images/ps4_console_white_2.png",
-      "assets/images/ps4_console_white_3.png",
-      "assets/images/ps4_console_white_4.png",
-    ],
-    colors: [
-      Color(0xFFF6625E),
-      Color(0xFF836DB8),
-      Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Manette sans fil pour PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 2,
-    images: [
-      "assets/images/Image Popular Product 2.png",
-    ],
-    colors: [
-      Color(0xFFF6625E),
-      Color(0xFF836DB8),
-      Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Nike Sport Blanc - Pantalon Homme",
-    price: 50.5,
-    description: description,
-    rating: 4.1,
-    isPopular: true,
-  ),
-  Product(
-    id: 3,
-    images: [
-      "assets/images/glap.png",
-    ],
-    colors: [
-      Color(0xFFF6625E),
-      Color(0xFF836DB8),
-      Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Gloves XC Omega - Polygon",
-    price: 36.55,
-    description: description,
-    rating: 4.1,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 4,
-    images: [
-      "assets/images/wireless headset.png",
-    ],
-    colors: [
-      Color(0xFFF6625E),
-      Color(0xFF836DB8),
-      Color(0xFFDECB9C),
-      Colors.white,
-    ],
-    title: "Logitech Head",
-    price: 20.20,
-    description: description,
-    rating: 4.1,
-    isFavourite: true,
-  ),
-];
-
-const String description =
-    "La manette sans fil pour PS4 ™ vous offre ce que vous voulez dans votre jeu, du contrôle de précision de vos jeux au partage…";

@@ -31,14 +31,40 @@ class User {
   }
 
   ///Create new user
-  Future<http.Response> postUser(name, email, password) async{
+  Future<http.Response> postUser(email, password) async{
     try {
       var url = Uri.parse(baseUrl + "/auth/register");
       return await http.post(url, body: <String, String>{
-        "name": name,
+        // "name": name,
         "email": email,
         "password": password,
         "password_confirmation": password
+      });
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  // Login User
+  Future<http.Response> loginUser(email, password) async{
+    try {
+      var url = Uri.parse(baseUrl + "/auth/login");
+      return await http.post(url, body: <String, String>{
+        "email": email,
+        "password": password,
+      });
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  // Logout User
+  Future<http.Response> logoutUser() async{
+    try {
+      var url = Uri.parse(baseUrl + "/auth/logout");
+      return await http.post(url, body: <String, String>{
+        // "email": email,
+        // "password": password,
       });
     } catch (e) {
       return Future.error(e);

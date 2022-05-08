@@ -23,12 +23,12 @@ class _SignUpFormState extends State<SignUpForm> {
   bool remember = false;
   final List<String> errors = [];
 
-  //connection au backend
+  //connection au backend fonction register
   void register() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
 
-      var response = await User().postUser(email, email, password);
+      var response = await User().postUser( email, password);
 
       print("${response.body}");
       if ( response . statusCode == 201  ){
@@ -68,7 +68,7 @@ class _SignUpFormState extends State<SignUpForm> {
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
-            text: "Continuer",
+            text: "S'inscrire",
             press: register,
           ),
         ],
