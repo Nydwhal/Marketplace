@@ -16,11 +16,19 @@ class Product extends Model
         "current_price",
         "start_date",
         "end_date",
-        'state'
+        'state',
+        'image',
+        'owner_id',
+        'client_id',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(User::class, 'client_id');
     }
 }

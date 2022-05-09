@@ -58,9 +58,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Request $request)
+    public function deleteUser(Request $request)
     {
-        $id = $request->id;
-        User::find($id)->delete();
+        User::find($request->id)->delete();
     }
 }

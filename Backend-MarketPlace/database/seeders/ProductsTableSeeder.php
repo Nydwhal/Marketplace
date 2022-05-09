@@ -24,6 +24,9 @@ class ProductsTableSeeder extends Seeder
                     "start_date" => '2021-06-26',
                     "end_date" => '2021-07-26',
                     'state' => 'on_sale',
+                    'owner_id' => '1',
+                    'image' => 'splash_1.png',
+                    'client_id' => '2',
                 ],
                 [
                     'label' => 'Ps5',
@@ -33,6 +36,9 @@ class ProductsTableSeeder extends Seeder
                     "start_date" => '2021-06-26',
                     "end_date" => '2021-07-10',
                     'state' => 'on_sale',
+                    'owner_id' => '1',
+                    'image' => 'splash_1.png',
+                    'client_id' => '1',
                 ],
                 [
                     'label' => 'Chaise',
@@ -42,6 +48,9 @@ class ProductsTableSeeder extends Seeder
                     "start_date" => '2022-01-26',
                     "end_date" => '2022-03-02',
                     'state' => 'sold',
+                    'owner_id' => '1',
+                    'image' => 'splash_1.png',
+                    'client_id' => '2',
                 ],
             ]
         );

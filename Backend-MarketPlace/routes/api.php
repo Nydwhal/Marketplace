@@ -34,7 +34,9 @@ Route::group([
     'prefix' => 'admin'
 ], function ($router) {
     Route::get('user', [UserController::class, 'index']);
-    Route::post('delete', [UserController::class, 'delete']);
+    Route::post('deleteUser', [UserController::class, 'deleteUser']);
+    Route::post('edit', [UserController::class, 'edit']);
+    Route::post('productSold', [ProductController::class, 'productSold']);
 });
 
 //Changer mettre
