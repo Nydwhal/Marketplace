@@ -25,7 +25,7 @@ class ProductsTableSeeder extends Seeder
                     "end_date" => '2021-07-26',
                     'state' => 'on_sale',
                     'owner_id' => '1',
-                    'image' => 'image',
+                    'image' => ' image',
                     'client_id' => '2',
                 ],
                 [

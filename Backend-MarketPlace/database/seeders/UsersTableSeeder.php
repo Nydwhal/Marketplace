@@ -19,13 +19,23 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert(
             [[
-                'email' => 'james@gmail.com',
-                'password' => 'jamespwd',
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('adminpwd'),
                 'amount' => 1000,
+                'created_at' => now(),
+                'updated_at' => now(),
             ], [
                 'email' => Str::random(10) . '@gmail.com',
-                'password' => 'userpwd',
+                'password' => bcrypt('userpwd'),
                 'amount' => rand(0, 1000),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ], [
+                'email' => 'james@gmail.com',
+                'password' => bcrypt('jamespwd'),
+                'amount' => rand(0, 1000),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]]
         );
     }

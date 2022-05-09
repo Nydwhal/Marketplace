@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -13,11 +13,23 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getAllUsers()
     {
-        return User::all();
+        if($this->checkAdmin()){
+            return User::all();
+        }
+        return response()->json(['error' => 'Unauthorized'], 401);
+        
     }
 
+    public function getUserById(Request $request)
+    {
+        if($this->checkAdmin() || $request->id == auth()->user()->id){
+            return User::find($request->id);
+        }
+        return User::find($request->id)->get('email','amount');
+    }
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -47,9 +59,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function editUser(Request $request)
     {
-        //
+        $email = $request->email;
+        $password = $request->password;
+        $amount = $request->amount;
+        $updated_at = now();
+        return User::find($request->id)->update(['email' => $email,'password' => $password,'amount' => $amount,'updated_at' => $updated_at]);
     }
 
     /**
@@ -60,6 +76,14 @@ class UserController extends Controller
      */
     public function deleteUser(Request $request)
     {
-        User::find($request->id)->delete();
+        if($this->checkAdmin()){
+            return User::find($request->id)->delete();;
+        }
+        
+    }
+
+    public function checkAdmin() {
+        $payload = auth()->payload();
+        return $payload['admin']==true;
     }
 }

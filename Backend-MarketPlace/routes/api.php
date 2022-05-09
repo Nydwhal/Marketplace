@@ -33,10 +33,13 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'admin'
 ], function ($router) {
-    Route::get('user', [UserController::class, 'index']);
-    Route::post('deleteUser', [UserController::class, 'deleteUser']);
-    Route::post('edit', [UserController::class, 'edit']);
-    Route::post('productSold', [ProductController::class, 'productSold']);
+    Route::get('/users', [UserController::class, 'getAllUsers']);
+    Route::get('/user', [UserController::class, 'getUserById']);
+    Route::post('/user/edit', [UserController::class, 'editUser']);
+    Route::delete('/user/delete', [UserController::class, 'deleteUser']);
+    Route::post('/edit', [UserController::class, 'edit']);
+    Route::post('/productSold', [ProductController::class, 'productSold']);
+    Route::get('/check-admin', [AuthController::class, 'checkAdmin']);
 });
 
 //Changer mettre

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
@@ -30,6 +30,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
+
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
@@ -37,6 +38,14 @@ class AuthController extends Controller
         if (! $token = auth()->attempt($validator->validated())) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
+        $admin = User::find(1);
+        if ($request->email == $admin->email && Hash::check($request->password, $admin->password)) {
+            $token = auth()->claims(['admin' => true])->attempt($validator->validated());
+        }
+
+        // return response()->json(['adminpwdenv' => env('ADMIN_PWD'),'requestpwd'=> $request->password, 'adminpwd'=> $admin->password ], 401);
+
 
         return $this->createNewToken($token);
     }
@@ -97,6 +106,13 @@ class AuthController extends Controller
         return response()->json(auth()->user());
     }
 
+    public function checkAdmin() {
+        $payload = auth()->payload();
+        return response()->json(['admin' => $payload['admin']]);
+    }
+
+    
+
     /**
      * Get the token array structure.
      *
@@ -105,9 +121,11 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     protected function createNewToken($token){
+        $payload = auth()->payload();
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
+            'admin'=> $payload['admin'],
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => auth()->user()
         ]);
